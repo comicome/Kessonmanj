@@ -1,0 +1,23 @@
+.column.is-one-quarter
+  .card
+    .card-image
+      figure.image.is-4by3
+        img src="#{restaurant.image_url}"
+    .card-content
+      .media
+        .media-left
+          figure.image.is-48x48
+            img src="#{restaurant.image_url}"
+        .media-content
+          p.title.is-4
+            | #{restaurant.name}
+          p.subtitle.is-6
+            | #{restaurant.rating}/5⭐
+      .content
+        - if restaurant.type_list.any?
+          | #{restaurant.type_list}.
+        p #{restaurant.review_count} avis
+        p #{restaurant.address}
+        a href="#link" en savoir plus
+        br
+        a href="#{restaurant.link}" Voir le restaurant sur #{restaurant.source}

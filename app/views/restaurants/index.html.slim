@@ -1,12 +1,18 @@
 == render "/devise/shared/nav_connected"
 
-section.hero
-  .hero-body
-    .container.is-widescreen
-      h1 Hello  
-      .field.has-addons
-        .control
-          input.input type="text" placeholder="Chercher un restaurant"
-        .control
-          a.button.is-info
-            | Chercher un restaurant
+.columns.is-mobile
+  .column.is-half.is-offset-one-quarter
+    section.hero
+    .hero-body
+      .container.is-widescreen
+        .field.has-addons
+          .control.is-expanded
+            input.input type="text" placeholder="Chercher un restaurant"
+          .control
+            a.button.is-info
+              | Rechercher
+
+.container.is-fluid
+  .columns.is-multiline
+    - @restaurants.each do |restaurant|
+      = render restaurant
