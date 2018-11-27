@@ -36,14 +36,14 @@ ActiveRecord::Schema.define(version: 2018_11_27_104049) do
     t.string "name"
     t.integer "review_count"
     t.float "rating"
-    t.integer "price"
+    t.string "price"
+    t.json "type_list", default: []
     t.string "address"
     t.string "link"
     t.string "source"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
-    t.string "type_list"
   end
 
   create_table "users", force: :cascade do |t|
