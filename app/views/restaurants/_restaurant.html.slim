@@ -12,12 +12,18 @@
           p.title.is-4
             | #{restaurant.name}
           p.subtitle.is-6
-            | #{restaurant.rating}/5⭐
+            strong #{restaurant.rating}/5⭐
       .content
         - if restaurant.type_list.any?
-          | #{restaurant.type_list}.
+          .tag.has-addons
+            span.tag
+              | Cuisines
+          - restaurant.type_list.each do |type|
+            |         
+            span.tag.is-info
+              | #{type}
         p #{restaurant.review_count} avis
         p #{restaurant.address}
-        a href="#link" en savoir plus
+        a href="#link" En savoir plus
         br
         a href="#{restaurant.link}" Voir le restaurant sur #{restaurant.source}

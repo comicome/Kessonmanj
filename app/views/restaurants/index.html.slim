@@ -1,16 +1,19 @@
 == render "/devise/shared/nav_connected"
 
-.columns.is-mobile
-  .column.is-half.is-offset-one-quarter
-    section.hero
-    .hero-body
-      .container.is-widescreen
-        .field.has-addons
-          .control.is-expanded
-            input.input type="text" placeholder="Chercher un restaurant"
-          .control
-            a.button.is-info
-              | Rechercher
+.field.has-addons.has-addons-centered
+  p.control
+    span.select
+      select
+        option Note
+        option Prix
+        option Avis
+
+= form_tag root_path, method: :get do
+
+  p.control.is-expanded 
+    = text_field_tag 'search', params[:search], class:"input", placeholder: "Rechercher un restaurant"
+  p.control
+    = submit_tag "Rechercher", class: "button is-info"
 
 .container.is-fluid
   .columns.is-multiline
