@@ -1,0 +1,14 @@
+article.media
+  figure.media-left
+    p.image.is-64x64
+      img src="https://bulma.io/images/placeholders/128x128.png"
+  .media-content
+    .content
+      p
+        strong 
+          | #{comment.user_id}
+        <br>
+          | #{comment.body}
+        <br>
+        - if comment.user_id == current_user.id
+          = link_to 'Supprimer', restaurant_comment_path(comment.restaurant , comment), method: :delete,  class: "button is-danger is-outlined"

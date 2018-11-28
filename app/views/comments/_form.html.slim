@@ -1,0 +1,12 @@
+= form_with(model: [ @restaurant, @restaurant.comments.build ], local: true) do |form|
+  article.media
+    figure.media-left
+      p.image.is-64x64
+        img src="https://bulma.io/images/placeholders/128x128.png"
+    .media-content
+      .field
+        p.control
+          = form.text_area :body, class: "textarea", placeholder: "Ecrire un commentaire"
+      .field
+        p.control
+          = form.submit "Commenter", class: "button is-primary"
