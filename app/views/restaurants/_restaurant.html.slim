@@ -1,4 +1,4 @@
-.column.is-one-quarter
+.column.is-one-quarter.is-2
   .card
     .card-image
       figure.image.is-4by3
@@ -24,6 +24,6 @@
               | #{type}
         p #{restaurant.review_count} avis
         p #{restaurant.address}
-        a href="#link" En savoir plus
+        = link_to 'En savoir plus', restaurant_path(restaurant)
         br
         a href="#{restaurant.link}" Voir le restaurant sur #{restaurant.source}
