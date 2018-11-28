@@ -1,21 +1,21 @@
 == render "/devise/shared/nav_connected"
 
-.field.has-addons.has-addons-centered
-  p.control
-    span.select
-      select
-        option Note
-        option Prix
-        option Avis
-
-= form_tag root_path, method: :get do
-
-  p.control.is-expanded 
-    = text_field_tag 'search', params[:search], class:"input", placeholder: "Rechercher un restaurant"
-  p.control
-    = submit_tag "Rechercher", class: "button is-info"
+.columns.is-mobile.is-centered
+  .column.is-half
+    = form_tag root_path, method: :get do
+    .field.has-addons.has-addons-centered
+      p.control
+        span.select
+          select
+            option Note
+            option Prix
+            option Avis
+      p.control.is-expanded 
+        = text_field_tag 'search', params[:search], class:"input", placeholder: "Rechercher un restaurant"
+      p.control
+        = submit_tag "Rechercher", class: "button is-info"
 
 .container.is-fluid
-  .columns.is-multiline
+  .columns.is-mobile.is-multiline.is-centered
     - @restaurants.each do |restaurant|
       = render restaurant
