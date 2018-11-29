@@ -33,11 +33,15 @@ container.is-widescreen
           p = "#{@restaurant.review_count} avis"
           p = @restaurant.address
           a href=@restaurant.link Voir le restaurant sur #{@restaurant.source}
-          
+
 .container.is-fluid
   .columns.is-mobile
-    /.column.is-three-fifths.is-offset-one-fifth
-    = render 'labels/form'
+    .column.is-three-fifths.is-offset-one-fifth
+      = render "labels/labels"
+.container.is-fluid
+  .columns.is-mobile
+    .column.is-three-fifths.is-offset-one-fifth
+      = render 'labels/form'
 
 .container.is-fluid
   .columns.is-mobile

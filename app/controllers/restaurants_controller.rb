@@ -13,6 +13,7 @@ class RestaurantsController < ApplicationController
     if @current_user_label.nil?
       @current_user_label = @restaurant.labels.build
     end
+    @users_labels = @restaurant.labels.map(&:user)
   end
 
 end

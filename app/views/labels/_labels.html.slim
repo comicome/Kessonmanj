@@ -1,0 +1,15 @@
+h2.title.is-2
+  | Honnête
+ul.pagination-list
+  - @restaurant.labels.each do |label|
+    - if label.name == "Honnête"
+      li  
+        = link_to 'Nom du user', user_path(label.user_id), class: "pagination-link"
+
+h2.title.is-2 
+  | Surcoté
+ul.pagination-list
+  - @restaurant.labels.each do |label|
+    - if label.name == "Surcoté"
+      li
+        = link_to 'Nom du user', user_path(label.user_id), class: "pagination-link"

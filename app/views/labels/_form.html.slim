@@ -1,6 +1,6 @@
 = form_with(model: [ @restaurant, @current_user_label ], local: true) do |form|
     .column
-      = form.radio_button :name, 'Hônnete', checked: @current_user_label.name == 'Hônnete'
+      = form.radio_button :name, 'Honnête', checked: @current_user_label.name == 'Honnête'
       = form.label :name_honnete, 'Honnête', :value => 'Honnête', class: "radio"
     .column
       = form.radio_button :name, 'Surcoté', checked: @current_user_label.name == 'Surcoté'
