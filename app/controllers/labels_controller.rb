@@ -14,7 +14,13 @@ class LabelsController < ApplicationController
   end
 
   def update
-     
+    @label = Label.find(params[:id])
+    if @label.update(label_params)
+      redirect_to restaurant_path(@restaurant)
+    else
+      @errors = @label.errors.full_messages
+      render 'restaurants/show'
+    end
   end
 
   def destroy
