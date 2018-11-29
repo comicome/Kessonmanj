@@ -32,6 +32,7 @@ gem "bulma-rails", "~> 0.7.2"
 # gem 'mini_magick', '~> 4.8'
 gem 'slim'
 gem 'json'
+gem 'acts-as-taggable-on', '~> 6.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
