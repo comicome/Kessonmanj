@@ -1,9 +1,9 @@
-= form_with(model: [ @restaurant, @restaurant.labels.build ], local: true) do |form|
+= form_with(model: [ @restaurant, @current_user_label ], local: true) do |form|
     .column
-      = form.radio_button 'label', 'Honnête'
-      = form.label 'label', 'Honnête', :value => 'Honnête', class: "radio"
+      = form.radio_button :name, 'Hônnete', checked: @current_user_label.name == 'Hônnete'
+      = form.label :name_honnete, 'Honnête', :value => 'Honnête', class: "radio"
     .column
-      = form.radio_button 'label', 'Surcoté'
-      = form.label 'label', 'Surcoté', :value => 'Surcoté', class: "radio"
+      = form.radio_button :name, 'Surcoté', checked: @current_user_label.name == 'Surcoté'
+      = form.label :name_surcote, 'Surcoté', :value => 'Surcoté', class: "radio"
     .column
       = form.submit "Ajouter le label", class: "button is-primary"
