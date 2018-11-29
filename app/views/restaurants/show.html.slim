@@ -33,10 +33,19 @@ container.is-widescreen
           p = "#{@restaurant.review_count} avis"
           p = @restaurant.address
           a href=@restaurant.link Voir le restaurant sur #{@restaurant.source}
+          
 .container.is-fluid
-  .columns.is-variable.is-5
-    .column
+  .columns.is-mobile
+    /.column.is-three-fifths.is-offset-one-fifth
+    = render 'labels/form'
+
+.container.is-fluid
+  .columns.is-mobile
+    .column.is-three-fifths.is-offset-one-fifth
       - @restaurant.comments.each do |comment|
         = render comment
-      = render 'comments/form'
-      = render 'labels/form'
+
+.container.is-fluid
+  .columns.is-mobile
+    .column.is-three-fifths.is-offset-one-fifth
+        = render 'comments/form'  
