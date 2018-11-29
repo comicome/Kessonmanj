@@ -13,7 +13,9 @@ class LabelsController < ApplicationController
     end
   end
 
-  def update 
+  def update
+     
+  end
 
   def destroy
     @label = @restaurant.labels.find(params[:id])
@@ -30,6 +32,6 @@ class LabelsController < ApplicationController
   end
 
   def label_params
-    params.require(:label).permit(:body)
+    params.require(:label).permit(:name)
   end
 end
