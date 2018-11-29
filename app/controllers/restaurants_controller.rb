@@ -9,6 +9,10 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @current_user_label = @restaurant.labels.find_by_user_id(current_user)
+    if @current_user_label.nil?
+      @current_user_label = @restaurant.labels.build
+    end
   end
 
 end
