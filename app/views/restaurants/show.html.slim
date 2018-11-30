@@ -1,4 +1,8 @@
 = render "/devise/shared/nav_connected"
+
+.columns
+  .column.is-one-fifth
+    = link_to 'Retour', root_path, class: "button is-primary"
 container.is-widescreen
   - if @errors
     .notification.is-danger

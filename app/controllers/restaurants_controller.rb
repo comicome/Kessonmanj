@@ -13,7 +13,11 @@ class RestaurantsController < ApplicationController
     if @current_user_label.nil?
       @current_user_label = @restaurant.labels.build
     end
+    @labels = ActsAsTaggableOn::Tag.all.map{ |tag| " Name :#{tag.name}   nombre: #{tag.taggings_count}"}
+    # @users_labels = @restaurant.labels.map do |label|
+    #   label.user
+    # end
+    # @users_labels = @restaurant.labels.map{|label| label.user }
     @users_labels = @restaurant.labels.map(&:user)
   end
-
 end
