@@ -11,6 +11,19 @@ class RestaurantsController < ApplicationController
     @tags = ActsAsTaggableOn::Tag.all
   end
 
+  def new
+    @restaurant = Restaurant.new
+  end
+
+  def create
+    @restaurant = Restaurant.new(restaurant_params)
+    if @restaurant.save
+      redirect_to @restaurant
+    else
+      render 'new'
+    end
+  end
+ 
   def show
     @restaurant = Restaurant.find(params[:id])
     @current_user_label = @restaurant.labels.find_by_user_id(current_user)
@@ -23,4 +36,11 @@ class RestaurantsController < ApplicationController
     # @users_labels = @restaurant.labels.map{|label| label.user }
     @users_labels = @restaurant.labels.map(&:user)
   end
+
+
+  private
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :image_url, :type_list, :address, :rating, :price, :review_count, :link, :source)
+  end
+
 end
