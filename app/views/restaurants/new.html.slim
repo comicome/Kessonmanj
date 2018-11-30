@@ -1,0 +1,48 @@
+.columns.is-mobile.is-centered
+  .column.is-half
+    = link_to 'Retour', root_path, class: "button is-primary"
+    = form_with(model: @restaurant , local: true) do |form|
+      .field
+        label.label
+          | Nom     
+          .control
+            = form.text_field :name, class: "input", placeholder: "Nom du restaurant"
+      .field
+        label.label
+          | Prix (le prix doit être exprimé en €)
+          .control
+            = form.text_field :price, class: "input", placeholder: "€€" 
+      .field
+        label.label
+          | Note (les notes sont sur 5.0)
+          .control
+            = form.text_field :rating, class: "input", placeholder: "2.5"
+      .field
+        label.label
+          | Type de cuisine du restaurant
+          .control
+            = form.text_field :type_list, class: "input", placeholder: "Japonais"
+      .field
+        label.label
+          | Adresse
+          .control
+            = form.text_field :address, class: "input", placeholder: "123 boulevard Haussaman 75001 Paris"
+      .field
+        label.label
+          | Lien vers le restaurant (site web, delivroo...)
+          .control
+            = form.text_field :link, class: "input", placeholder: "https://deliveroo.fr/menu/paris/11eme-republique/the-kitchen-paris?day=today&time=ASAP"
+      .field
+        label.label
+          | Source du lien
+          .control
+            = form.text_field :source, class: "input", placeholder: "Delivroo"
+      .field
+        label.label
+          | Lien vers une image du restaurant
+          .control
+            = form.text_field :image_url, class: "input", placeholder: "https://f.roocdn.com/images/menus/79615/header-image.jpg?width=320&height=180&auto=webp&format=jpg&fit=crop&v=1537282411"                          
+      .field
+        p.control
+          = form.submit "Enregistrer", class: "button is-primary"
+    
