@@ -7,11 +7,15 @@
           .control.is-expanded 
             = text_field_tag 'search', params[:search], class:"input", placeholder: "Rechercher un restaurant"
           .control.select.is-multiple.is-primary
-            = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]), multiple: true
-          .control
+            = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]), multiple: true, class: 'is-medium'
             = submit_tag "Rechercher", class: "button is-info"
 
 .container.is-fluid
   .columns.is-mobile.is-multiline.is-centered
     - @restaurants.each do |restaurant|
       = render restaurant
+
+javascript:
+  $(document).ready(function() {
+    $('.is-medium').select2();
+  });
