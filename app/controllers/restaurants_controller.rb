@@ -5,6 +5,10 @@ class RestaurantsController < ApplicationController
     if params[:search]
       @restaurants = @restaurants.where("name LIKE ? OR address LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
     end
+    if params[:cooking_style]
+      @restaurants = @restaurants.tagged_with(params[:cooking_style], :any => true)
+    end
+    @tags = ActsAsTaggableOn::Tag.all
   end
 
   def show
@@ -13,7 +17,6 @@ class RestaurantsController < ApplicationController
     if @current_user_label.nil?
       @current_user_label = @restaurant.labels.build
     end
-    @labels = ActsAsTaggableOn::Tag.all.map{ |tag| " Name :#{tag.name}   nombre: #{tag.taggings_count}"}
     # @users_labels = @restaurant.labels.map do |label|
     #   label.user
     # end
