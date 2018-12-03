@@ -6,4 +6,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :labels, dependent: :destroy
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
+
+  def honest_labels
+    labels.honest
+  end
+
+  def overated_labels
+    labels.overated
+  end
 end
