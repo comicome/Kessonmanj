@@ -7,16 +7,19 @@ class RestaurantsController < ApplicationController
     end
     if params[:cooking_style]
       @restaurants = @restaurants.tagged_with(params[:cooking_style], :any => true)
-    end
+    end 
     @tags = ActsAsTaggableOn::Tag.all
   end
 
   def new
     @restaurant = Restaurant.new
+    @tags = ActsAsTaggableOn::Tag.all
   end
 
   def create
+    params[:restaurant][:price] = params[:restaurant][:price].reject(&:blank?).join("-")
     @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.tag_list.add(params[:restaurant][:tag_list])
     if @restaurant.save
       redirect_to @restaurant
     else
@@ -40,7 +43,7 @@ class RestaurantsController < ApplicationController
 
   private
   def restaurant_params
-    params.require(:restaurant).permit(:name, :image_url, :type_list, :address, :rating, :price, :review_count, :link, :source)
+    params.require(:restaurant).permit(:name, :review_count, :rating, :price, :tag_list, :address, :link, :source, :image_url)
   end
 
 end
