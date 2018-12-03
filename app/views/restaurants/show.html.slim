@@ -33,6 +33,7 @@ container.is-widescreen
               span.tag.is-info
                 = type
           p = "#{@restaurant.review_count} avis"
+          p = @restaurant.price
           p = @restaurant.address
           a href=@restaurant.link Voir le restaurant sur #{@restaurant.source}
 

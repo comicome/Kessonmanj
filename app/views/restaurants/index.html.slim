@@ -6,6 +6,8 @@ body
             .control.is-expanded 
               = text_field_tag 'search', params[:search], class:"input", placeholder: "Rechercher un restaurant"
             .control.select.is-multiple.is-primary
+              = select_tag "price", "<option>€</option><option>€€</option><option>€€€</option>".html_safe, multiple: true, class: 'is-medium'                     
+            .control.select.is-multiple.is-primary
               = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]), multiple: true, class: 'is-medium'
               = submit_tag "Rechercher", class: "button is-info"
 
