@@ -5,9 +5,13 @@ class RestaurantsController < ApplicationController
     if params[:search]
       @restaurants = @restaurants.where("name LIKE ? OR address LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
     end
+    if params[:price]
+      params[:price] = params[:price].reject(&:blank?).join(" - ")
+      @restaurants = @restaurants.where("price LIKE ?", "%#{params[:price]}%")
+    end
     if params[:cooking_style]
       @restaurants = @restaurants.tagged_with(params[:cooking_style], :any => true)
-    end 
+    end  
     @tags = ActsAsTaggableOn::Tag.all
   end
 
@@ -17,7 +21,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    params[:restaurant][:price] = params[:restaurant][:price].reject(&:blank?).join("-")
+    params[:restaurant][:price] = params[:restaurant][:price].reject(&:blank?).join(" - ")
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.tag_list.add(params[:restaurant][:tag_list])
     if @restaurant.save
