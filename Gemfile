@@ -35,6 +35,7 @@ gem 'json'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'
+gem 'bulma-extensions-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
