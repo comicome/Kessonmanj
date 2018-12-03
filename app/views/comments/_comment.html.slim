@@ -6,7 +6,7 @@ article.media
     .content
       p
         strong 
-          | #{comment.user_id}
+          | #{comment.user.first_name} #{comment.user.last_name}
         <br>
           | #{comment.body}
         <br>
