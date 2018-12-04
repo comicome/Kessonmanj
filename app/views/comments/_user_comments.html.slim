@@ -1,0 +1,20 @@
+.columns.is-mobile.is-multiline.newboxes#onglet3
+  - @user.comments.each do |comment|
+    .column.is-one-quarter
+      .box
+        article.media
+          .media-left
+            figure.image.is-64x64
+              img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"
+          .media-content
+            .content
+              p
+                strong
+                  | #{@user.first_name} #{@user.last_name} 
+                small
+                  | #{comment.created_at.strftime("%F")}                 
+                br
+                  | #{comment.body}
+            nav.level.is-mobile
+              .level-left
+                = link_to "Voir le restaurant", restaurant_path(comment.restaurant.id), class: "level-item"  
