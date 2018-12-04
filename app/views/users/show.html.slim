@@ -1,23 +1,5 @@
 .columns
   .container.profile
-    .modal#edit-preferences-modal
-      .modal-background
-      .modal-card
-        .header.modal-card-head
-          p.modal-card-title Editer le profil
-          .button.delete
-        section.modal-card-body
-          label.label Username
-          p.control.has-icon.has-icon-right
-            input.input
-          label.label #{@user.email}
-          p.control.has-icon.has-icon-right
-            input.input 
-            i.fa.fa-warning
-            span.help.is-danger This email is invalid
-        footer.modal-card-foot
-          a.button.is-primary.modal-save Sauvegarder
-          a.button.modal-cancel Retour
     .section.profile-heading
       .columns.is-mobile.is-multiline
         .column.is-2
@@ -26,13 +8,9 @@
         .column.is-4-tablet.is-10-mobile.name
           p
             span.title.is-bold #{@user.first_name} #{@user.last_name}
+            p.tagline
+              | #{@user.email}
             - if @user.id == current_user.id
-              br
-              a#edit-preferences.button.is-primary.is-outlined
-                | Modifier le profil
-            br
-          p.tagline
-            | #{@user.email}
         .column.is-2-tablet.is-4-mobile.has-text-centered
           p.stat-val #{@user.honest_labels.count}
           p.stat-key labels honnêtes
@@ -49,14 +27,14 @@
       .tabs.is-fullwidth.is-medium
         ul#fond_soins
           li.link
-            a.asoins href="javascript:showonlyone('onglet1');"
+            a.asoins#first href="javascript:showonlyone('onglet1');"
               #acu1
                 span Labels honnêtes
           li.link
             a.asoins href="javascript:showonlyone('onglet2');"
               #acu2
                 span Labels surcotés
-          li.link# 
+          li.link
             a.asoins href="javascript:showonlyone('onglet3');"
               #acu3       
                 span Mes commentaires
@@ -115,7 +93,7 @@ scss:
   .tabs a:hover{
     border-bottom: solid 2.5px #00d1b2;
     text-decoration:none;
-    transition-duration: 0.5s
+    transition-duration: 0.3s
   }
 
   #onglet1 {
@@ -135,6 +113,10 @@ javascript:
     $('.modal-card-head button.delete, .modal-save, .modal-cancel').click(function(){
       $('#edit-preferences-modal').removeClass('is-active');
     });
+  });
+
+    $(document).ready(function() {
+    $('#first').toggleClass('activelink', true);
   });
 
   $(function(){
