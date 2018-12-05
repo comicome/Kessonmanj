@@ -1,32 +1,26 @@
-body
-  h1 
-    | Connexion
-
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-
-    .columns.is-mobile.is-centered
-      .column.is-half
-        .field
-          p.control.has-icons-left
-            = f.label :email
-            = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
-              span.icon.is-small.is-left
-                i.fas.fa-envelope
-
-        .field
-          p.control.has-icons-left
-            = f.label :password
-            = f.password_field :password, autocomplete: "current-password", class: "input"
-                span.icon.is-small.is-left
-                  i.fas.fa-lock
-
-        - if devise_mapping.rememberable?
-          label.checkbox
-            = f.check_box :remember_me, class: "checkbox"
-            = f.label "Se souvenir de moi"
-
-        .field
-          p.control
-              = f.submit "Connexion", class: "button is-success"
-
-          == render "devise/shared/links"
+section.hero.is-fullheight
+  .hero-body
+    .container.has-text-centered
+      .column.is-4.is-offset-4
+        h3.title.has-text-grey
+          | Connexion
+        p.subtitle.has-text-grey
+          | Connectez-vous pour continuer
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .box
+              .field
+                .control
+                  = f.label :email
+                  = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
+              .field
+                .control
+                  = f.label :password
+                  = f.password_field :password, autocomplete: "current-password", class: "input"
+              .field
+                - if devise_mapping.rememberable?
+                  label.checkbox
+                    = f.check_box :remember_me, class: "checkbox"
+                    = f.label "Se souvenir de moi"
+                = f.submit "Connexion", class: "button is-success is-block is-info is-large is-fullwidth"  
+                p class="has-text-grey"
+                  == render "devise/shared/links"

@@ -1,35 +1,32 @@
-body
-  h1
-    | Inscription
-
-  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    = devise_error_messages!
-
-    .columns.is-mobile.is-centered
-      .column.is-half
-        .field
-          p.control.has-icons-left.has-icons-right
-            = f.label :email
-            = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
-              span.icon.is-small.is-left
-                i.fas.fa-envelope
-
-        .field
-          p.control.has-icons-left
-            = f.label :password
-            - if @minimum_password_length
-              <em>(6 caractères minimum)</em>
-              = f.password_field :password, autocomplete: "new-password", class: "input"
-                span.icon.is-small.is-left
-                  i.fas.fa-lock
-
-        .field
-          p.control.has-icons-left
-            = f.label :password_confirmation
-            = f.password_field :password_confirmation, autocomplete: "new-password", class: "input"
-              span.icon.is-small.is-left
-                i.fas.fa-lock
-
-        .field
-          p.control
-              = f.submit "Inscription", class: "button is-success"
+section.hero.is-fullheight
+  .hero-body
+    .container.has-text-centered
+      .column.is-4.is-offset-4
+        h3.title.has-text-grey
+          | Inscription
+        p.subtitle.has-text-grey
+          | L'inscription est nécessaire pour continuer
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = devise_error_messages!
+          .box
+            .field
+              .control
+                = f.label :email
+                = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
+            .field
+              .control
+                = f.label :password
+                - if @minimum_password_length
+                  <em>(6 caractères minimum)</em>
+                  = f.password_field :password, autocomplete: "new-password", class: "input"
+            .field
+              .control
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, autocomplete: "new-password", class: "input"
+            .field
+              - if devise_mapping.rememberable?
+                label.checkbox
+                  = f.check_box :remember_me, class: "checkbox"
+                  = f.label "Se souvenir de moi"
+            .field          
+              = f.submit "Inscription", class: "button is-success is-block is-info is-large is-fullwidth"  
