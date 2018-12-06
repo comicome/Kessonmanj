@@ -1,21 +1,31 @@
 h2.title.is-2
   | Label honnête
-ul.pagination-list
+ul
   - @restaurant.labels.each do |label|
     - if label.name == "Honnête"
       li  
         = link_to "#{label.user.first_name} #{label.user.last_name}", user_path(label.user_id), class: "pagination-link"
     - else
-      li  
+      li.no-labels  
        | Ce restaurant ne possède pas de label honnête 😢 
 
-h2.title.is-2 
+h2.title.is-2.second-title 
   | Label surcôté
-ul.pagination-list
+ul
   - @restaurant.labels.each do |label|
     - if label.name == "Surcoté"
       li
         = link_to "#{label.user.first_name} #{label.user.last_name}", user_path(label.user_id), class: "pagination-link"
     - else
-      li  
+      li.no-labels
        | Ce restaurant ne possède pas de label surcoté 🏆
+
+
+scss: 
+  .no-labels{
+    margin-top: -5px;
+  }
+
+  .second-title{
+    margin-top: 10px;
+  }

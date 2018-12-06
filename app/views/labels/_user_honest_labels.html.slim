@@ -7,9 +7,6 @@
             img src="#{honest_label.restaurant.image_url}"
         .card-content
           .media
-            .media-left
-              figure.image.is-48x48
-                img src="#{honest_label.restaurant.image_url}"
             .media-content
               p.title.is-4
                 | #{honest_label.restaurant.name}
@@ -17,13 +14,13 @@
                 strong #{honest_label.restaurant.rating}/5⭐
           .content
             - if honest_label.restaurant.type_list.any?
-              .tag.has-addons
-                span.tag
-                  | Cuisines
+              span.tag.is-primary
+                | Cuisines
               - honest_label.restaurant.type_list.each do |type|   
                 |    
                 span.tag.is-info
                   | #{type}
-            p #{honest_label.restaurant.price}
+            - if honest_label.restaurant.price?     
+              p.price Prix: #{honest_label.restaurant.price}
             p #{honest_label.restaurant.review_count} avis
             a href="#{honest_label.restaurant.link}" Voir le restaurant sur #{honest_label.restaurant.source}

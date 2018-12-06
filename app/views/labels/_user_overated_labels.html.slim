@@ -8,9 +8,6 @@
               img src="#{overated_labels.restaurant.image_url}"
         .card-content
           .media
-            .media-left
-              figure.image.is-48x48
-                img src="#{overated_labels.restaurant.image_url}"
             .media-content
               p.title.is-4
                 = link_to "#{overated_labels.restaurant.name}", restaurant_path(overated_labels.restaurant)
@@ -18,13 +15,12 @@
                 strong #{overated_labels.restaurant.rating}/5⭐
           .content
             - if overated_labels.restaurant.type_list.any?
-              .tag.has-addons
-                span.tag
-                  | Cuisines
+              span.tag.is-primary
+                | Cuisines
               - overated_labels.restaurant.type_list.each do |type|        
                 |    
                 span.tag.is-info
                   | #{type}
-            p #{overated_labels.restaurant.price}
+            p.price Prix: #{overated_labels.restaurant.price}
             p #{overated_labels.restaurant.review_count} avis
             a href="#{overated_labels.restaurant.link}" Voir le restaurant sur #{overated_labels.restaurant.source}

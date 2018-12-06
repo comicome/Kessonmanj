@@ -11,7 +11,7 @@
         .column.is-4-tablet.is-10-mobile.name
           p
             span.title.is-bold #{@user.first_name} #{@user.last_name}
-            p.tagline
+            p.tagline.email
               | #{@user.email}
         .column.is-2-tablet.is-4-mobile.has-text-centered
           p.stat-val #{@user.honest_labels.count}
@@ -46,6 +46,14 @@
     = render "comments/user_comments"       
 
 scss: 
+
+  .email{
+    margin-top: 5px;
+  }
+
+  .price{
+    margin-top: 10px;
+  }
 
   a.back{
     margin-top: 30px; 

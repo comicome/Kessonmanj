@@ -1,4 +1,4 @@
-.column.is-one-quarter.is-2
+.column.is-one-quarter
   .card
     .card-image
       = link_to restaurant_path(restaurant)
@@ -6,9 +6,6 @@
           img src="#{restaurant.image_url}"
       .card-content
         .media
-          .media-left
-            figure.image.is-48x48
-              img src="#{restaurant.image_url}"
           .media-content
             p.title.is-4
               = link_to "#{restaurant.name}", restaurant_path(restaurant)
@@ -17,14 +14,18 @@
               small #{restaurant.review_count} avis
         .content
           - if restaurant.type_list.any?
-            .tag
-              span.tag
-                | Cuisines
+            span.tag.is-primary
+              | Cuisines
             - restaurant.type_list.each do |type|
               |    
               span.tag.is-info
                 | #{type}
           - if restaurant.price?                         
-            p Prix: #{restaurant.price}
+            p.price Prix: #{restaurant.price}
           p #{restaurant.address}
           a href="#{restaurant.link}" Voir le restaurant sur #{restaurant.source}
+
+scss: 
+  .price{
+    margin-top: 10px;
+  }
