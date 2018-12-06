@@ -1,3 +1,6 @@
+h3.title.is-3
+  | Ajouter un label au restaurant
+
 = form_with(model: [ @restaurant, @current_user_label ], local: true) do |form|
     .column
       = form.radio_button :name, 'Honnête', checked: @current_user_label.name == 'Honnête'

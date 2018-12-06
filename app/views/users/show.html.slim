@@ -1,3 +1,6 @@
+.container.is-fluid
+  = link_to 'Retour', root_path, class: "button is-info back"
+
 .columns
   .container.profile
     .section.profile-heading
@@ -10,7 +13,6 @@
             span.title.is-bold #{@user.first_name} #{@user.last_name}
             p.tagline
               | #{@user.email}
-            - if @user.id == current_user.id
         .column.is-2-tablet.is-4-mobile.has-text-centered
           p.stat-val #{@user.honest_labels.count}
           p.stat-key labels honnêtes
@@ -44,6 +46,12 @@
     = render "comments/user_comments"       
 
 scss: 
+
+  a.back{
+    margin-top: 30px; 
+    margin-bottom: 35px;
+  }
+
   .stat-val {
     font-size: 3em;
     padding-top: 20px;

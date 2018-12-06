@@ -1,21 +1,21 @@
 section.hero
   .hero-body
-      .columns.is-mobile.is-centered
-        .column.is-half
-          = form_tag root_path, method: :get do
-            .field.has-addons.has-addons-centered
-                .control.is-expanded 
-                  = text_field_tag 'search', params[:search], class:"input", placeholder: "Rechercher un restaurant"
-                .control.select.is-multiple.is-primary
-                  = select_tag "price", "<option selected=\"selected\">€</option><option>€€</option><option>€€€</option>".html_safe, multiple: true, class: 'is-medium'                     
-                .control.select.is-multiple.is-primary
-                  = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]), multiple: true, class: 'is-medium'
-                  = submit_tag "Rechercher", class: "button is-info"
+    .columns.is-mobile.is-centered
+      .column.is-half
+        = form_tag root_path, method: :get do
+          .field.has-addons.has-addons-centered
+            .control.is-expanded 
+              = text_field_tag 'search', params[:search], class:"input", placeholder: "Rechercher un restaurant"
+            .control.select.is-multiple.is-primary
+              = select_tag "price", "<option selected=\"selected\">€</option><option>€€</option><option>€€€</option>".html_safe, multiple: true, class: 'is-medium'                     
+            .control.select.is-multiple.is-primary
+              = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]), multiple: true, class: 'is-medium'
+              = submit_tag "Rechercher", class: "button is-primary"
 
-      .container.is-fluid
-        .columns.is-mobile.is-multiline.is-centered
-          - @restaurants.each do |restaurant|
-            = render restaurant
+  .container.is-fluid
+    .columns.is-mobile.is-multiline.is-centered
+      - @restaurants.each do |restaurant|
+        = render restaurant
 
 javascript:
   $(document).ready(function() {

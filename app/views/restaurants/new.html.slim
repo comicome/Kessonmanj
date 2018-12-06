@@ -1,53 +1,73 @@
-.columns.is-mobile.is-centered
-  .column.is-half
-    = link_to 'Retour', root_path, class: "button is-primary"
-    = form_with(model: @restaurant , local: true) do |form|
-      .field
-        label.label
-          | Nom     
-          .control
-            = form.text_field :name, class: "input", placeholder: "Nom du restaurant"
-      .field
-        label.label
-          | Prix                 
-        .control.select.is-multiple.is-primary
-            = form.select(:price, [['€', '€'],['€€', '€€'],['€€€', '€€€']],{},{ :multiple => true, class: 'is-medium'})
-      .field
-        label.label
-          | Note
-          .control
-            input.slider.has-output.is-fullwidth.is-primary.is-circle id="sliderWithValue" name="restaurant[rating]" step="0.1" min="0" max="5" value="2.5" type="range"
-            output for="sliderWithValue" 
-              | 2
-      .field
-        label.label
-          | Types de cuisine
-        .control.select.is-multiple.is-primary
-          = form.select(:tag_list, options_from_collection_for_select(@tags, 'name', 'name', :tag_list),{ :prompt => "Types de cuisine"},{ :multiple => true, class: 'is-medium' })
-      .field
-        label.label
-          | Adresse
-          .control
-            = form.text_field :address, class: "input", placeholder: "123 boulevard Haussaman 75001 Paris"
-      .field
-        label.label
-          | Lien vers le restaurant (site web, delivroo...)
-          .control
-            = form.text_field :link, class: "input", placeholder: "https://deliveroo.fr/menu/paris/11eme-republique/the-kitchen-paris?day=today&time=ASAP"
-      .field
-        label.label
-          | Source du lien
-          .control
-            = form.text_field :source, class: "input", placeholder: "Delivroo"
-      .field
-        label.label
-          | Lien vers une image du restaurant
-          .control
-            = form.text_field :image_url, class: "input", placeholder: "https://f.roocdn.com/images/menus/79615/header-image.jpg?width=320&height=180&auto=webp&format=jpg&fit=crop&v=1537282411"                          
-      .field
-        p.control
-          = form.submit "Enregistrer", class: "button is-primary"
-    
+section
+  .container.is-fluid
+    = link_to 'Retour', root_path, class: "button is-info"
+
+section.hero.is-fullheight
+    .container
+      .column.is-three-fifths.is-offset-one-fifth
+        h1.title.is-1
+          | Ajouter un restaurant
+        h5.subtitle.is-5
+          | Compléter les champs du formulaire pour ajouter un restaurant
+        = form_with(model: @restaurant , local: true) do |form|
+          .field
+            label.label
+              | Nom     
+              .control
+                = form.text_field :name, class: "input", placeholder: "Nom du restaurant"
+          .field
+            label.label
+              | Prix                 
+            .control.select.is-multiple.is-primary
+                = form.select(:price, [['€', '€'],['€€', '€€'],['€€€', '€€€']],{},{ :multiple => true, class: 'is-medium'})
+          .field
+            label.label
+              | Note
+              .control
+                input.slider.has-output.is-fullwidth.is-primary.is-circle id="sliderWithValue" name="restaurant[rating]" step="0.1" min="0" max="5" value="2.5" type="range"
+                output for="sliderWithValue" 
+                  | 2.5
+          .field
+            label.label
+              | Types de cuisine
+            .control.select.is-multiple.is-primary
+              = form.select(:tag_list, options_from_collection_for_select(@tags, 'name', 'name', :tag_list),{ :prompt => "Types de cuisine"},{ :multiple => true, class: 'is-medium' })
+          .field
+            label.label
+              | Adresse
+              .control
+                = form.text_field :address, class: "input", placeholder: "123 boulevard Haussaman 75001 Paris"
+          .field
+            label.label
+              | Lien vers le restaurant (site web, delivroo...)
+              .control
+                = form.text_field :link, class: "input", placeholder: "https://deliveroo.fr/menu/paris/11eme-republique/the-kitchen-paris?day=today&time=ASAP"
+          .field
+            label.label
+              | Source du lien
+              .control
+                = form.text_field :source, class: "input", placeholder: "Delivroo"
+          .field
+            label.label
+              | Lien vers une image du restaurant
+              .control
+                = form.text_field :image_url, class: "input", placeholder: "https://f.roocdn.com/images/menus/79615/header-image.jpg?width=320&height=180&auto=webp&format=jpg&fit=crop&v=1537282411"                          
+          .field
+            p.control
+              = form.submit "Enregistrer", class: "button is-primary"
+
+
+
+
+scss: 
+  section{
+    margin-top: 30px;
+  }
+
+  a.button{
+    margin-bottom: 35px;
+  }
+
 javascript:
   $(document).ready(function() {
     $('.is-medium').select2();

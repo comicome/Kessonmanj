@@ -21,11 +21,10 @@
               span.tag
                 | Cuisines
             - restaurant.type_list.each do |type|
-              |         
+              |    
               span.tag.is-info
                 | #{type}
-            br 
-            br               
-          p #{restaurant.price}
+          - if restaurant.price?                         
+            p Prix: #{restaurant.price}
           p #{restaurant.address}
           a href="#{restaurant.link}" Voir le restaurant sur #{restaurant.source}

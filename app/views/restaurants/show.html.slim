@@ -1,6 +1,8 @@
+section
+  .container.is-fluid
+    = link_to 'Retour', root_path, class: "button is-info"
 .columns
   .column.is-one-fifth
-    = link_to 'Retour', root_path, class: "button is-primary"
 container.is-widescreen
   - if @errors
     .notification.is-danger
@@ -23,16 +25,18 @@ container.is-widescreen
               = @restaurant.name
             p.subtitle.is-6
               strong = "#{@restaurant.rating}/5⭐ "
+              small = "#{@restaurant.review_count} avis"
         .content
           - if @restaurant.type_list.any?
-            .tag.has-addons
+            .tag
               span.tag
                 | Cuisines
             - @restaurant.type_list.each do |type|
               |         
               span.tag.is-info
                 = type
-          p = "#{@restaurant.review_count} avis"
+          br
+          br
           p = @restaurant.price
           p = @restaurant.address
           a href=@restaurant.link Voir le restaurant sur #{@restaurant.source}
@@ -55,4 +59,9 @@ container.is-widescreen
 .container.is-fluid
   .columns.is-mobile
     .column.is-three-fifths.is-offset-one-fifth
-        = render 'comments/form'  
+        = render 'comments/form'
+
+scss: 
+  section{
+    margin-top: 30px;
+  }

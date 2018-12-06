@@ -7,8 +7,15 @@ article.media
       p
         strong 
           | #{comment.user.first_name} #{comment.user.last_name}
-        <br>
+        br  
           | #{comment.body}
-        <br>
         - if comment.user_id == current_user.id
           = link_to 'Supprimer', restaurant_comment_path(comment.restaurant , comment), method: :delete,  class: "button is-danger is-outlined"
+
+
+
+scss: 
+  .button.is-danger.is-outlined{
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
