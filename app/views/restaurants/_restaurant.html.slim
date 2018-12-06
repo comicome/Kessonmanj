@@ -9,9 +9,12 @@
           .media-content
             p.title.is-4
               = link_to "#{restaurant.name}", restaurant_path(restaurant)
-            p.subtitle.is-6
-              strong #{restaurant.rating}/5⭐           
-              small #{restaurant.review_count} avis
+            - if restaurant.rating?    
+              p.subtitle.is-6
+                strong #{restaurant.rating}/5⭐
+            - if restaurant.review_count?         
+              p.subtitle.is-6.avis
+                | #{restaurant.review_count} avis
         .content
           - if restaurant.type_list.any?
             span.tag.is-primary
@@ -28,4 +31,8 @@
 scss: 
   .price{
     margin-top: 10px;
+  }
+
+  .avis{
+    margin-top: -15px;
   }
