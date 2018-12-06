@@ -1,4 +1,4 @@
-section.hero.is-fullheight
+section
   .hero-body
     .container.has-text-centered
       .column.is-4.is-offset-4
@@ -20,7 +20,22 @@ section.hero.is-fullheight
                 - if devise_mapping.rememberable?
                   label.checkbox
                     = f.check_box :remember_me, class: "checkbox"
-                    = f.label "Se souvenir de moi"
-                = f.submit "Connexion", class: "button is-success is-block is-info is-large is-fullwidth"  
+                    = f.label "Se souvenir de moi", class: "remember"
+                = f.submit "Connexion", class: "button is-success is-block is-info is-large is-fullwidth cta"  
                 p class="has-text-grey"
                   == render "devise/shared/links"
+
+scss: 
+
+  .remember{
+    margin-left: 5px;
+  }
+
+  section{
+    margin-top: 60px;
+  }
+
+  .cta{
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
