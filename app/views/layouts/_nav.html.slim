@@ -1,4 +1,4 @@
-nav.navbar role="navigation" aria-label="main navigation"
+nav.navbar.bg-grey role="navigation" aria-label="main navigation"
   .navbar-brand
     .navbar-item
       = link_to root_path
@@ -14,7 +14,12 @@ nav.navbar role="navigation" aria-label="main navigation"
           - if current_user 
             = link_to 'Ajouter un restaurant', new_restaurant_path, class: "button is-primary is-rounded"
             = link_to 'Mon profil', user_path(current_user), class: "button is-info is-outlined is-rounded"
-            = link_to 'Déconnexion', destroy_user_session_path, method: :delete, class: "button is-danger is-outlined is-rounded"
+            = link_to 'Déconnexion', destroy_user_session_path, method: :delete, class: "button is-info is-outlined is-rounded"
           - else
             = link_to 'Inscription', new_user_registration_path, class: "button is-primary"
             = link_to 'Connexion',  new_user_session_path, class: "button is-light"
+
+scss: 
+  .bg-grey{
+    background-color: #eceff1;
+  }
