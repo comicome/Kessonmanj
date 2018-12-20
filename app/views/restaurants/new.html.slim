@@ -6,7 +6,7 @@ section.hero.is-fullheight
     .container
       .column.is-three-fifths.is-offset-one-fifth
         h1.title.is-1
-          | Ajouter un restaurant
+          |Ajouter un restaurant
         h5.subtitle.is-5
           | Compléter les champs du formulaire pour ajouter un restaurant
         = form_with(model: @restaurant , local: true) do |form|
@@ -26,7 +26,7 @@ section.hero.is-fullheight
               .control
                 input.slider.has-output.is-fullwidth.is-primary.is-circle id="sliderWithValue" name="restaurant[rating]" step="0.1" min="0" max="5" value="2.5" type="range"
                 output for="sliderWithValue" 
-                  | 2.5
+                  | 2
           .field
             label.label
               | Types de cuisine
@@ -36,7 +36,7 @@ section.hero.is-fullheight
             label.label
               | Adresse
               .control
-                = form.text_field :address, class: "input", placeholder: "123 boulevard Haussaman 75001 Paris"
+                = form.text_field :address, class: "input", placeholder: "123 boulevard Haussmann 75001 Paris"
           .field
             label.label
               | Lien vers le restaurant (site web, delivroo...)
