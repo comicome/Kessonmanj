@@ -1,0 +1,37 @@
+section
+  .container.is-fluid
+    = link_to 'Retour', root_path, class: "button is-info"
+section.hero.is-fullheight
+    .container
+      .column.is-three-fifths.is-offset-one-fifth
+        h1.title.is-1
+          |Editer mon profil
+        h5.subtitle.is-5
+          | Compléter les champs du formulaire pour modifier votre profil
+        = form_for(@user) do |f|
+          .field
+            label.label
+              = f.label :first_name     
+              .control
+                = f.text_field :first_name, class: "input"
+          .field
+            label.label
+              = f.label :last_name    
+              .control
+                = f.text_field :last_name, class: "input"
+          .field
+            label.label
+              = f.label :email  
+              .control
+                = f.text_field :email, class: "input"
+            p.control
+              = f.submit "Enregistrer", class: "button is-primary"
+
+scss: 
+  section{
+    margin-top: 30px;
+  }
+
+  a.button{
+    margin-bottom: 35px;
+  }

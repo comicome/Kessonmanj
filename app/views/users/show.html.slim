@@ -13,6 +13,8 @@
             span.title.is-bold #{@user.first_name} #{@user.last_name}
             p.tagline.email
               | #{@user.email}
+            - if current_user == @user
+              = link_to 'Editer mon profil', edit_user_path, class: "button is-primary is-rounded"
         .column.is-2-tablet.is-4-mobile.has-text-centered
           p.stat-val #{@user.honest_labels.count}
           p.stat-key labels honnêtes

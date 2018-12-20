@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'restaurants#index'
   devise_for :users
-  resources :users, only: [:show, :index]
+  resources :users
   resources :restaurants, only: [:show, :new, :create]  do
     resources :comments
     resources :labels
