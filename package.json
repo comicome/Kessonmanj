@@ -1,5 +1,8 @@
 {
   "name": "Kessonmanj",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "mapbox-gl": "^0.52.0",
+    "require": "^2.4.20"
+  }
 }

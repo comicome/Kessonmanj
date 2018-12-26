@@ -31,6 +31,8 @@ gem "bulma-rails", "~> 0.7.2"
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
 gem 'image_processing', '~> 1.2'
+gem 'webpacker', '~> 3.5'
+gem 'mapbox-gl-rails'
 gem 'slim'
 gem 'json'
 gem 'acts-as-taggable-on', '~> 6.0'
