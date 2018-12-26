@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   root to: 'restaurants#index'
   devise_for :users
-  resources :users
+  resources :users do
+    collection do
+      patch 'update_password'
+    end
+    member do
+      get 'edit_password'
+    end
+  end
   resources :restaurants, only: [:show, :new, :create]  do
     resources :comments
     resources :labels
