@@ -29,7 +29,8 @@ gem 'jbuilder', '~> 2.5'
 #gem css framework https://github.com/joshuajansen/bulma-rails
 gem "bulma-rails", "~> 0.7.2"
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
+gem 'image_processing', '~> 1.2'
 gem 'slim'
 gem 'json'
 gem 'acts-as-taggable-on', '~> 6.0'
