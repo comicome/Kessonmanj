@@ -12,6 +12,10 @@ section.hero
               = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]), multiple: true, class: 'is-medium'
               = submit_tag "Rechercher", class: "button is-primary search"
 
+  .hero-body
+    .columns.is-mobile.is-centered
+      .column.is-half#map
+
   .container.is-fluid
     .columns.is-mobile.is-multiline.is-centered
       - @restaurants.each do |restaurant|
@@ -22,8 +26,44 @@ scss:
     margin-left: -3px;
     margin-top: -1px;
   }
+  #map { top:0; bottom:0; width:100%; height: 600px; }
 
 javascript:
   $(document).ready(function() {
     $('.is-medium').select2();
+  });
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoiY29taWNvbWVkaW5vIiwiYSI6ImNqcTUyZGRuaTF1ZW40M3RkdHphbDJpdjgifQ.s5NApfzcMq2rBFgdRhmQvg';
+  var map = new mapboxgl.Map({
+      container: 'map', // container id
+      style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+      center: [2.3522608000000673, 48.8767204], // starting position [lng, lat]
+      zoom: 16 // starting zoom
+  });
+  map.on('load', function() {
+    map.loadImage('https://cdn0.iconfinder.com/data/icons/landmark-glyph/484/castle_japan-512.png', function(error, image) {
+        if (error) throw error;
+        map.addImage('wizcastle', image);
+        map.addLayer({
+            "id": "points",
+            "type": "symbol",
+            "source": {
+                "type": "geojson",
+                "data": {
+                    "type": "FeatureCollection",
+                    "features": [{
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [2.3522608000000673, 48.8767204]
+                        }
+                    }]
+                }
+            },
+            "layout": {
+                "icon-image": "wizcastle",
+                "icon-size": 0.1
+            }
+        });
+    });
   });
