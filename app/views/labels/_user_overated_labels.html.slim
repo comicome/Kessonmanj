@@ -1,26 +1,26 @@
 .columns.is-mobile.is-multiline.newboxes#onglet2
-  - @user.overated_labels.each do |overated_labels|
+  - @user.overated_labels.each do |overated_label|
     .column.is-one-quarter
       .card
         .card-image
-          = link_to restaurant_path(overated_labels.restaurant)
+          = link_to restaurant_path(overated_label.restaurant)
             figure.image.is-4by3
-              img src="#{overated_labels.restaurant.image_url}"
+              img src="#{overated_label.restaurant.image_url}"
         .card-content
           .media
             .media-content
               p.title.is-4
-                = link_to "#{overated_labels.restaurant.name}", restaurant_path(overated_labels.restaurant)
+                = link_to "#{overated_label.restaurant.name}", restaurant_path(overated_label.restaurant)
               p.subtitle.is-6
-                strong #{overated_labels.restaurant.rating}/5⭐
+                strong #{overated_label.restaurant.rating}/5⭐
           .content
-            - if overated_labels.restaurant.type_list.any?
+            - if overated_label.restaurant.type_list.any?
               span.tag.is-primary
                 | Cuisines
-              - overated_labels.restaurant.type_list.each do |type|        
+              - overated_label.restaurant.type_list.each do |type|        
                 |    
                 span.tag.is-info
                   | #{type}
-            p.price Prix: #{overated_labels.restaurant.price}
-            p #{overated_labels.restaurant.review_count} avis
-            a href="#{overated_labels.restaurant.link}" Voir le restaurant sur #{overated_labels.restaurant.source}
+            p.price Prix: #{overated_label.restaurant.price}
+            p #{overated_label.restaurant.review_count} avis
+            a href="#{overated_label.restaurant.link}" Voir le restaurant sur #{overated_label.restaurant.source}
