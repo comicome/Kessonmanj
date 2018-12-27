@@ -1,23 +1,26 @@
 h2.title.is-2
   | Label honnête
 ul
-  - @restaurant.labels.each do |label|
-    - if label.name == "Honnête"
-      li  
-        = link_to "#{label.user.first_name} #{label.user.last_name}", user_path(label.user_id), class: "pagination-link"
-    - else
-      li.no-labels  
-       | Ce restaurant ne possède pas de label honnête 😢 
+  - if @honest_labels.any?
+    - @honest_labels.each do |label|
+      - if label.name == "Honnête"
+        li  
+          = link_to "#{label.user.first_name} #{label.user.last_name}", user_path(label.user_id), class: "pagination-link"
+  - else 
+    li.no-labels  
+    | Ce restaurant ne possède pas de label honnête 😢 
 
 h2.title.is-2.second-title 
   | Label surcôté
+
 ul
-  - @restaurant.labels.each do |label|
-    - if label.name == "Surcoté"
-      li
-        = link_to "#{label.user.first_name} #{label.user.last_name}", user_path(label.user_id), class: "pagination-link"
-    - else
-      li.no-labels
+  - if @overrated_labels.any?
+    - @overrated_labels.each do |label|
+      - if label.name == "Surcoté"
+        li  
+          = link_to "#{label.user.first_name} #{label.user.last_name}", user_path(label.user_id), class: "pagination-link"
+  - else 
+    li.no-labels  
        | Ce restaurant ne possède pas de label surcoté 🏆
 
 

@@ -33,6 +33,15 @@ class RestaurantsController < ApplicationController
  
   def show
     @restaurant = Restaurant.find(params[:id])
+    @honest_labels = []
+    @overrated_labels = []
+    @restaurant.labels.each do |label|
+      if label.name == "Honnête"
+        @honest_labels << label
+      elsif label.name == "Surcoté"
+        @overrated_labels << label      
+      end
+    end
     @current_user_label = @restaurant.labels.find_by_user_id(current_user)
     if @current_user_label.nil?
       @current_user_label = @restaurant.labels.build
