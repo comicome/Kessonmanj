@@ -9,7 +9,13 @@ Rails.application.routes.draw do
       get 'edit_password'
     end
   end
-  resources :restaurants, only: [:show, :new, :create]  do
+  resources :restaurants  do
+    member do 
+      get 'preview'
+    end
+    collection do
+      get 'preview_all'
+    end
     resources :comments
     resources :labels
   end

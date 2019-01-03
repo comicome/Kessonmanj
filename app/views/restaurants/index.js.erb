@@ -1,0 +1,8 @@
+var restaurants_geo_JSON = <%= @resto %> 
+
+$("#map").data("restaurant", restaurants_geo_JSON)
+
+map.getSource('places').setData({
+  "type": "FeatureCollection",
+  "features": $("#map").data("restaurant")
+});
