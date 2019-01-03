@@ -2,6 +2,7 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.order("rating desc")
+    @restaurants_geo = []
     if params[:search]
       @restaurants = @restaurants.where("name LIKE ? OR address LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
     end
@@ -13,6 +14,13 @@ class RestaurantsController < ApplicationController
       @restaurants = @restaurants.tagged_with(params[:cooking_style], :any => true)
     end  
     @tags = ActsAsTaggableOn::Tag.all
+    @restaurants.each do |restaurant_geo|
+      restaurant = { :type => "Feature", :geometry => {:type => "Point", :coordinates => [restaurant_geo.longitude, restaurant_geo.latitude]}, :properties => { :title => restaurant_geo.name, :id => restaurant_geo.id }}
+      @restaurants_geo << restaurant
+    end
+    @restaurants_geo_json = @restaurants_geo.to_json
+    @resto = @restaurants_geo_json.html_safe  
+
   end
 
   def new
@@ -53,6 +61,10 @@ class RestaurantsController < ApplicationController
     @users_labels = @restaurant.labels.map(&:user)
   end
 
+  def preview
+    @restaurant = Restaurant.find(params[:id])
+    render layout: false
+  end
 
   private
   def restaurant_params
