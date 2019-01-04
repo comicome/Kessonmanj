@@ -1,5 +1,4 @@
 class LabelsController < ApplicationController
-
   before_action :set_restaurant, only: [:create, :update, :destroy]
 
   def create
