@@ -1,28 +1,46 @@
 section.hero
   = form_tag root_path, class: "search_bar", remote: true, method: :get do
     .field.has-addons.has-addons-centered
-      .control.is-expanded 
-        = text_field_tag 'search', params[:search], class:"input", placeholder: "Rechercher un restaurant"
+      .control.is-expanded.address 
+        = text_field_tag 'search', params[:search], class:"input h-40", placeholder: "Rechercher un restaurant"
       .control.select.is-multiple.is-primary
-        = select_tag "price", "<option selected=\"selected\">€</option><option>€€</option><option>€€€</option>".html_safe, multiple: true, class: 'is-medium'                     
+        = select_tag "price", "<option selected=\"selected\">€</option><option>€€</option><option>€€€</option>".html_safe, multiple: true, class: 'is-medium h-40'                     
       .control.select.is-multiple.is-primary
-        = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]), multiple: true, class: 'is-medium'
+        = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]), multiple: true, class: 'is-medium h-40'
       .control.select.is-multiple.is-primary
-        = submit_tag "Rechercher", class: "button is-primary search", 'data-disable-with' => "Please wait.."
+        = submit_tag "Rechercher", class: "button is-primary search h-40", 'data-disable-with' => "Please wait.."
   #map data-restaurant=@restaurants_geo_json
 
 scss: 
-  .search{
-    margin-left: -3px;
-    margin-top: -1px;
+
+  .field.has-addons.has-addons-centered>.control.select.is-multiple.is-primary{
+    margin-left: 10px;
+  }
+
+  .h-40, .select2-container{
+    height: 40px;
+  }
+
+  .select2-selection--multiple{
+    height: 100%;
+  }
+  .select2-container--default .select2-selection--multiple li.select2-selection__choice {
+    margin-top: 6px;
+  }
+
+  .address{
+    max-width: 600px;
   }
   #map { top:0; bottom:0; width:100%; height: 100vh; }
   .search_bar {
     position: absolute;
     top: 80px;
     z-index: 1;
-    width: 70%;
-    left: 15%;
+    width: 40%;
+    left: 30%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
   }
   .mr-tp-20{
     margin-top: 20px;
