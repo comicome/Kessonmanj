@@ -5,7 +5,10 @@
         article.media
           .media-left
             figure.image.is-64x64
-              img src="https://api.adorable.io/avatars/195/abott@adorable.io.png" alt="Image"
+              - if @user.avatar.attached?
+                = image_tag @user.avatar
+              - else
+                img src="https://api.adorable.io/avatars/195/abott@adorable.io.png"              
           .media-content
             .content
               p

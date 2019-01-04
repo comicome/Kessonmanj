@@ -37,7 +37,7 @@ container.is-widescreen
           br
           p Prix: #{@restaurant.price}
           p = @restaurant.address
-          a href=@restaurant.link Voir le restaurant sur #{@restaurant.source}
+          = link_to  "Voir le restaurant sur #{@restaurant.source}", @restaurant.link
 
 .container.is-fluid
   .columns.is-mobile

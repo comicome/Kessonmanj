@@ -1,4 +1,4 @@
-var restaurants_geo_JSON = <%= @resto %> 
+var restaurants_geo_JSON = <%= @restaurants_geojson.html_safe %> 
 
 $("#map").data("restaurant", restaurants_geo_JSON)
 
