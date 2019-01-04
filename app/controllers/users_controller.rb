@@ -1,20 +1,18 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, except: [:show]
 
   def show  
     @user = User.find(params[:id])
   end
 
   def edit
-    @user = current_user
   end
 
   def edit_password
-    @user = current_user
   end
 
   def update_password
-    @user = current_user
     if @user.update_with_password(user_password)
       # Sign in the user by passing validation in case their password changed
       bypass_sign_in(@user)
@@ -25,8 +23,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
-
     if @user.update(user_params)
       redirect_to @user
     else
@@ -40,7 +36,11 @@ class UsersController < ApplicationController
   end
 
   def user_params
-  params.require(:user).permit(:first_name, :last_name, :nickName, :email, :avatar)
+    params.require(:user).permit(:first_name, :last_name, :nickName, :email, :avatar)
+  end
+
+  def set_user
+    @user = current_user
   end
 
 end
