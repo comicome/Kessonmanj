@@ -3,9 +3,7 @@ h2.title.is-2
 ul
   - if @honest_labels.any?
     - @honest_labels.each do |label|
-      - if label.name == "Honnête"
-        li  
-          = link_to "#{label.user.first_name} #{label.user.last_name}", user_path(label.user_id), class: "pagination-link"
+      li= link_to "#{label.user.first_name} #{label.user.last_name}", user_path(label.user_id), class: "pagination-link"
   - else 
     li.no-labels  
     | Ce restaurant ne possède pas de label honnête 😢 
@@ -14,15 +12,12 @@ h2.title.is-2.second-title
   | Label surcôté
 
 ul
-  - if @overrated_labels.any?
-    - @overrated_labels.each do |label|
-      - if label.name == "Surcoté"
-        li  
-          = link_to "#{label.user.first_name} #{label.user.last_name}", user_path(label.user_id), class: "pagination-link"
+  - if @overated_labels.any?
+    - @overated_labels.each do |label|
+      li= link_to "#{label.user.first_name} #{label.user.last_name}", user_path(label.user_id), class: "pagination-link"
   - else 
     li.no-labels  
        | Ce restaurant ne possède pas de label surcoté 🏆
-
 
 scss: 
   .no-labels{
