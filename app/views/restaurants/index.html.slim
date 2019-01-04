@@ -7,6 +7,7 @@ section.hero
         = select_tag "price", "<option selected=\"selected\">€</option><option>€€</option><option>€€€</option>".html_safe, multiple: true, class: 'is-medium'                     
       .control.select.is-multiple.is-primary
         = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]), multiple: true, class: 'is-medium'
+      .control.select.is-multiple.is-primary
         = submit_tag "Rechercher", class: "button is-primary search", 'data-disable-with' => "Please wait.."
   #map data-restaurant=@restaurants_geo_json
 
@@ -18,7 +19,7 @@ scss:
   #map { top:0; bottom:0; width:100%; height: 100vh; }
   .search_bar {
     position: absolute;
-    top: 5%;
+    top: 80px;
     z-index: 1;
     width: 70%;
     left: 15%;
@@ -42,18 +43,24 @@ javascript:
   mapboxgl.accessToken = 'pk.eyJ1IjoiY29taWNvbWVkaW5vIiwiYSI6ImNqcWdveGdzMjUxNDk0M255MzR1ZWtnZjUifQ.oxoFZ8l4IbX8O9szjnpw7Q';
 
   //  Set bounds to Paris, Paris
-  //var bounds = [
-  //   [2.2422608000000673, 48.8067204], // Southwest coordinates
-  //   [2.4222608000000673, 48.9089604]  // Northeast coordinates
-  //];
+  var bounds = [
+    [2.2422608000000673, 48.8067204], // Southwest coordinates
+    [2.4222608000000673, 48.9089604]  // Northeast coordinates
+  ];
 
   var map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
       center: [2.3522608000000673, 48.8767204], // starting position [lng, lat]
       zoom: 14, // starting zoom
-  //    maxBounds: bounds
+     maxBounds: bounds
   });
+
+      // disable map rotation using right click + drag
+  map.dragRotate.disable();
+
+  // disable map rotation using touch rotation gesture
+  map.touchZoomRotate.disableRotation();
 
   map.on('load', function() {
     //load wizcastle
