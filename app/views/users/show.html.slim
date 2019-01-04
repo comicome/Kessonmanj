@@ -51,8 +51,8 @@
               #acu3       
                 span Mes commentaires
 
-    = render "labels/user_honest_labels"
-    = render "labels/user_overated_labels"
+    = render partial: "labels/user_labels", locals: {labels: @user.honest_labels, tab_id: "onglet1"}
+    = render partial: "labels/user_labels", locals: {labels: @user.overated_labels, tab_id: "onglet2"}
     = render "comments/user_comments"       
 
 scss: 
