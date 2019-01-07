@@ -5,6 +5,7 @@ class Restaurant < ApplicationRecord
   acts_as_taggable
   before_save :set_geo_datas
 
+
   def self.search(search, price, cooking_style)
     restaurants = self
     if search
@@ -19,6 +20,7 @@ class Restaurant < ApplicationRecord
     end
     restaurants
   end
+
 
   def set_geo_datas
     results = Geocoder.search(self.address)
