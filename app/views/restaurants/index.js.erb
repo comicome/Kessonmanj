@@ -6,3 +6,21 @@ map.getSource('places').setData({
   "type": "FeatureCollection",
   "features": $("#map").data("restaurant")
 });
+
+
+var name = "<%= params[:search].html_safe %>"
+var price = "<%= params[:price].join(' - ').html_safe %>"
+var cooking_style = "<%= params[:cooking_style].join(' - ').html_safe %>"
+var user_id = "<%= params[:user_id].html_safe %>"
+
+origine = window.location.origin
+pathName = window.location.pathname
+var url = new URL(origine + pathName);
+
+url.searchParams.append('name', name)
+url.searchParams.append('price', price)
+url.searchParams.append('cooking_style', cooking_style)
+url.searchParams.append('user_id', user_id)
+
+
+history.pushState(null, null, url);
