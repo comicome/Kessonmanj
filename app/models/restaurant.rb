@@ -3,6 +3,7 @@ class Restaurant < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :labels, dependent: :destroy
   acts_as_taggable
+  before_save :set_geo_datas
 
   def self.search(search, price, cooking_style)
     restaurants = self
@@ -17,6 +18,15 @@ class Restaurant < ApplicationRecord
       restaurants = restaurants.tagged_with(cooking_style, :any => true)
     end
     restaurants
+  end
+
+  def set_geo_datas
+    results = Geocoder.search(self.address)
+    latitude = results.first.coordinates[0]
+    longitude = results.first.coordinates[1]
+    self.latitude = latitude
+    self.longitude = longitude
+    puts self.name
   end
 
   def self.to_geojson
