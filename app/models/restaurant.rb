@@ -12,7 +12,7 @@ class Restaurant < ApplicationRecord
       restaurants = restaurants.where("restaurants.name LIKE ? OR address LIKE ?", "%#{search}%", "%#{search}%")
     end
     if price
-      price = price.reject(&:blank?).join(" - ")
+      price = price.reject(&:blank?).join(" - ") if price.kind_of?(Array)
       restaurants = restaurants.where("price LIKE ?", "%#{price}%")
     end
     if cooking_style
