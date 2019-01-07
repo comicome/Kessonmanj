@@ -23,8 +23,9 @@ container.is-widescreen
             .review    
               p.is-6
                 strong = "#{@restaurant.rating}/5⭐ "
-              p.is-6              
-                ="#{@restaurant.review_count} avis"
+              - if @restaurant.type_list.any?
+                p.is-6              
+                  ="#{@restaurant.review_count} avis"
         .content
           - if @restaurant.type_list.any?
             span.tag.is-primary
