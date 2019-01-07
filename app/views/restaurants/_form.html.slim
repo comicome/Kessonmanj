@@ -7,7 +7,9 @@
     .control.select.is-multiple.is-primary
       = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]), multiple: true, class: 'is-medium h-40'
     .control.select.is-multiple.is-primary
-      = submit_tag "Rechercher", class: "button is-primary search h-40", 'data-disable-with' => "Please wait.."
+      = select_tag "user_id", options_from_collection_for_select(@users, 'id', 'first_name', params[:labels]), :include_blank => 'Les labels honnête de', class: 'is-medium h-40'
+    .control.select.is-multiple.is-primary
+      = submit_tag "Rechercher", class: "button is-primary search h-40", 'data-disable-with' => "Un instant..."
 
 
 javascript:
@@ -30,6 +32,17 @@ scss:
   }
   .select2-container--default .select2-selection--multiple li.select2-selection__choice {
     margin-top: 6px;
+  }
+
+  .select2-selection.select2-selection--single{
+    height: 100%;
+  }
+  .select2-container--default .select2-selection--single .select2-selection__rendered{
+    line-height: 40px;
+  }
+
+  .select2-container--default .select2-selection--single .select2-selection__arrow{
+    height: 40px;
   }
 
   .address{

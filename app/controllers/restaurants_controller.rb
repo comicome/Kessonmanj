@@ -1,10 +1,11 @@
 class RestaurantsController < ApplicationController
   before_action :set_tags, only: [:index, :new]
+  before_action :set_users
   before_action :set_restaurant, only: [:show, :preview]
 
   def index
     @restaurants = Restaurant.order("rating desc")
-    @restaurants = @restaurants.search(params[:search], params[:price], params[:cooking_style])
+    @restaurants = @restaurants.search(params[:search], params[:price], params[:cooking_style], params[:user_id])
     @restaurants_geojson = @restaurants.to_geojson
   end
 
@@ -44,8 +45,12 @@ class RestaurantsController < ApplicationController
     params.require(:restaurant).permit(:name, :review_count, :rating, :price, :tag_list, :address, :link, :source, :image_url)
   end
 
+  def set_users
+    @users = User.order("first_name asc")
+  end
+
   def set_tags
-    @tags = ActsAsTaggableOn::Tag.all
+    @tags = ActsAsTaggableOn::Tag.order("name asc")
   end
 
   def set_restaurant
