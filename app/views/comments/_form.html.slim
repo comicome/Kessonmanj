@@ -1,9 +1,9 @@
 = form_with(model: [ @restaurant, @restaurant.comments.build ], local: true) do |form|
   article.media
     figure.media-left
-      p.image.is-64x64
       - if current_user.avatar.attached?
-        = image_tag current_user.avatar
+        p.image.is-64x64
+          = image_tag current_user.avatar
       - else
         img src="https://api.adorable.io/avatars/195/abott@adorable.io.png"
     .media-content
