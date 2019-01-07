@@ -1,16 +1,15 @@
 = form_tag root_path, class: "search_bar", remote: true, method: :get do
   .field.has-addons.has-addons-centered
     .control.is-expanded.address 
-      = text_field_tag 'search', params[:search], class:"input h-40", placeholder: "Rechercher un restaurant"
+      = text_field_tag 'search', params[:name], class:"input h-40", placeholder: "Rechercher un restaurant"
     .control.select.is-multiple.is-primary
-      = select_tag "price", "<option selected=\"selected\">€</option><option>€€</option><option>€€€</option>".html_safe, multiple: true, class: 'is-medium h-40'                     
+      = select_tag "price", options_for_select(options_for_price, params[:price]&.split(' - ')), multiple: true, class: 'is-medium h-40'                     
     .control.select.is-multiple.is-primary
-      = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]), multiple: true, class: 'is-medium h-40'
+      = select_tag "cooking_style", options_from_collection_for_select(@tags, 'name', 'name', params[:cooking_style]&.split(' - ')), multiple: true, class: 'is-medium h-40'
     .control.select.is-multiple.is-primary
-      = select_tag "user_id", options_from_collection_for_select(@users, 'id', 'first_name', params[:labels]), :include_blank => 'Les labels honnête de', class: 'is-medium h-40'
+      = select_tag "user_id", options_from_collection_for_select(@users, 'id', 'first_name', params[:user_id]), :include_blank => 'Les labels honnête de', class: 'is-medium h-40'
     .control.select.is-multiple.is-primary
       = submit_tag "Rechercher", class: "button is-primary search h-40", 'data-disable-with' => "Un instant..."
-
 
 javascript:
 
